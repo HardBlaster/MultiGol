@@ -1,6 +1,7 @@
-package hu.unideb.multigol.gol.env;
+package hu.unideb.multigol.gol.env.grid;
 
-import hu.unideb.multigol.gol.RuleSystem;
+import hu.unideb.multigol.gol.env.Cell;
+import hu.unideb.multigol.gol.env.RuleSystem;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,11 +18,13 @@ public abstract class Environment {
     protected int height;
     protected int currentGeneration;
     protected Cell[][] grid;
+    protected int[][] neighborhoodMatrix;
     protected RuleSystem ruleSystem;
 
     protected Environment(int width, int height) {
         this.width = width;
         this.height = height;
+        this.neighborhoodMatrix = new int[height][width];
     }
 
     public int getAlive() {
@@ -35,5 +38,7 @@ public abstract class Environment {
     }
 
     public abstract void nextGen();
+
+    public abstract void generate(int AR);
 
 }
